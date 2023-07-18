@@ -16,7 +16,7 @@ const getFoods = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { imagen, nombre, tipo, precio, descripcion } = req.body;
+    const { imagen, nombre, tipo, precio, descripcion, item } = req.body;
 
     const newCarta = await crear({
       imagen,
@@ -24,6 +24,7 @@ const post = async (req, res) => {
       tipo,
       precio,
       descripcion,
+      item,
     });
     res.status(201).json(newCarta);
   } catch (error) {

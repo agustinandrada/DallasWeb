@@ -1,8 +1,9 @@
-const { Carta } = require("../db");
+const { Carta, Item } = require("../db");
 
 const allFoods = async () => {
   const comidas = await Carta.findAll({
     where: { tipo: "Comida" },
+    include: [{ model: Item }],
   });
 
   if (comidas.length === 0) {
@@ -12,24 +13,37 @@ const allFoods = async () => {
   return comidas;
 };
 
-const crear = async ({ imagen, nombre, tipo, descripcion, precio }) => {
+const crear = async ({ imagen, nombre, tipo, descripcion, precio, item }) => {
   if (
-    imagen.length != 0 &&
-    nombre.length != 0 &&
-    tipo.length != 0 &&
-    descripcion.length != 0 &&
-    precio.length != 0
+    item.length !== 0 &&
+    imagen.length !== 0 &&
+    nombre.length !== 0 &&
+    tipo.length !== 0 &&
+    descripcion.length !== 0 &&
+    precio.length !== 0
   ) {
-    const newCarta = await Carta.create({
-      imagen,
-      nombre,
-      tipo,
-      descripcion,
-      precio,
+    const itemElegido = await Item.findOne({ where: { tipo: item } });
+    const itemId = itemElegido.id;
+
+    let [product, created] = await Carta.findOrCreate({
+      where: { nombre, tipo, itemId },
+      defaults: {
+        imagen,
+        nombre,
+        tipo,
+        descripcion,
+        precio,
+        itemId,
+      },
     });
-    return newCarta;
+
+    if (!created) {
+      throw new Error("Este producto ya existe");
+    }
+
+    return product;
   } else {
-    return statusCode(400);
+    throw new Error("Los campos son obligatorios");
   }
 };
 

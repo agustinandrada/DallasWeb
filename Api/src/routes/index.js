@@ -4,6 +4,7 @@ const drinksRoutes = require("./drinksRoutes");
 const creadoRoutes = require("./creadoRoutes");
 const updateRoutes = require("./updateRoutes");
 const deleteRoutes = require("./deleteRoutes");
+const itemsRouter = require("./itemsRoutes");
 
 const router = Router();
 
@@ -16,5 +17,7 @@ router.use("/post", creadoRoutes);
 router.use("/update", updateRoutes);
 
 router.use("/delete", deleteRoutes);
+
+router.use("/items", itemsRouter);
 
 module.exports = router;
