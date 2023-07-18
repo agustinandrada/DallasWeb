@@ -2,6 +2,7 @@ const {
   allFoods,
   crear,
   actualizar,
+  deleteI,
 } = require("../controllers/foodControllers");
 
 const getFoods = async (req, res) => {
@@ -31,17 +32,22 @@ const post = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  try {
-    const { imagen, nombre, tipo, precio, descripcion } = req.body;
+  const { id } = req.params;
 
-    const updateCarta = await actualizar({
-      imagen,
-      nombre,
-      tipo,
-      precio,
-      descripcion,
-    });
-    res.status(201).json(updateCarta);
+  try {
+    const update = await actualizar(id, req.body);
+
+    res.status(200).json(update);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteItem = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleted = await deleteI(id);
+    res.status(200).json(deleted);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -50,4 +56,6 @@ const update = async (req, res) => {
 module.exports = {
   getFoods,
   post,
+  update,
+  deleteItem,
 };
