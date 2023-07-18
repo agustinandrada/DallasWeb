@@ -5,7 +5,7 @@ const creadoRoutes = require("./creadoRoutes");
 
 const router = Router();
 
-router.use("/food", foodRoutes);
+router.use("/foods", foodRoutes);
 
 router.use("/drinks", drinksRoutes);
 
