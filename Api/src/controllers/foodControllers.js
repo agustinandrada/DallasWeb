@@ -33,4 +33,25 @@ const crear = async ({ imagen, nombre, tipo, descripcion, precio }) => {
   }
 };
 
-module.exports = { crear, allFoods };
+const actualizar = async ({ imagen, nombre, tipo, descripcion, precio }) => {
+  if (
+    imagen.length != 0 &&
+    nombre.length != 0 &&
+    tipo.length != 0 &&
+    descripcion.length != 0 &&
+    precio.length != 0
+  ) {
+    const newCarta = await Carta.create({
+      imagen,
+      nombre,
+      tipo,
+      descripcion,
+      precio,
+    });
+    return newCarta;
+  } else {
+    return statusCode(400);
+  }
+};
+
+module.exports = { crear, allFoods, actualizar };

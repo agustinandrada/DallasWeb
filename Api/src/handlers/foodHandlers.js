@@ -1,4 +1,8 @@
-const { allFoods, crear } = require("../controllers/foodControllers");
+const {
+  allFoods,
+  crear,
+  actualizar,
+} = require("../controllers/foodControllers");
 
 const getFoods = async (req, res) => {
   const food = await allFoods();
@@ -10,8 +14,9 @@ const getFoods = async (req, res) => {
 };
 
 const post = async (req, res) => {
-  const { imagen, nombre, tipo, precio, descripcion } = req.body;
   try {
+    const { imagen, nombre, tipo, precio, descripcion } = req.body;
+
     const newCarta = await crear({
       imagen,
       nombre,
@@ -20,6 +25,23 @@ const post = async (req, res) => {
       descripcion,
     });
     res.status(201).json(newCarta);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const update = async (req, res) => {
+  try {
+    const { imagen, nombre, tipo, precio, descripcion } = req.body;
+
+    const updateCarta = await actualizar({
+      imagen,
+      nombre,
+      tipo,
+      precio,
+      descripcion,
+    });
+    res.status(201).json(updateCarta);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
