@@ -12,7 +12,6 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         allowNull: false,
       },
-      imagen: { type: DataTypes.TEXT, allowNull: false },
       tipo: { type: DataTypes.ENUM("Comida", "Bebida"), allowNull: false },
       nombre: { type: DataTypes.STRING, allowNull: false },
       descripcion: { type: DataTypes.STRING, allowNull: false },
