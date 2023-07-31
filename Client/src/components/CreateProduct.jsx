@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CreateProduct({ setCreate, create }) {
+function CreateProduct({ setCreate }) {
   const [form, setForm] = useState({
     nombre: "",
     descripcion: "",
