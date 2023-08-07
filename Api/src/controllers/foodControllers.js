@@ -13,10 +13,9 @@ const allFoods = async () => {
   return comidas;
 };
 
-const crear = async ({ imagen, nombre, tipo, descripcion, precio, item }) => {
+const crear = async ({ nombre, tipo, descripcion, precio, item }) => {
   if (
     item.length !== 0 &&
-    imagen.length !== 0 &&
     nombre.length !== 0 &&
     tipo.length !== 0 &&
     descripcion.length !== 0 &&
@@ -28,7 +27,6 @@ const crear = async ({ imagen, nombre, tipo, descripcion, precio, item }) => {
     let [product, created] = await Carta.findOrCreate({
       where: { nombre, tipo, itemId },
       defaults: {
-        imagen,
         nombre,
         tipo,
         descripcion,
@@ -51,9 +49,8 @@ const actualizar = async (id, datos) => {
   const item = await Carta.findByPk(id);
 
   if (item) {
-    const { imagen, nombre, tipo, descripcion, precio } = datos;
+    const { nombre, tipo, descripcion, precio } = datos;
 
-    item.imagen = imagen || item.imagen;
     item.nombre = nombre || item.nombre;
     item.tipo = tipo || item.tipo;
     item.descripcion = descripcion || item.descripcion;
