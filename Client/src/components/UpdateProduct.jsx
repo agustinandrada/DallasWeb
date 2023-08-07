@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { ProductContext } from "../Views/Admin";
+import axios from "axios";
+
+const URL_BASE = "http://localhost:3001";
+
 function UpdateProduct({ setUpdate }) {
-  //AGREGAR UN BUSCADOR POR NOMBRE PARA ENCONTRAR EL PRODUCTO MÁS RÁPIDO.
+  const { updateData } = useContext(ProductContext);
 
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  useEffect(() => {
+    setValue("nombre", updateData.nombre);
+    setValue("descripcion", updateData.descripcion);
+    setValue("precio", updateData.precio);
+    setValue("tipo", updateData.tipo);
+    setValue("item", updateData.item);
+  }, []);
+
+  const onSubmit = (data) => {
+    axios.update(`${URL_BASE}/update`, data);
+  };
 
   return (
     <div>

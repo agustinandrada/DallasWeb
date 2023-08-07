@@ -1,39 +1,9 @@
+import { useContext } from "react";
 import Producto from "./Producto";
-
-const productos = [
-  {
-    nombre: "Hamburguesa completa",
-    descripcion: "Tomate lechuga queso carne",
-    precio: 1500,
-  },
-  {
-    nombre: "Pizza napolitana",
-    descripcion: "queso, tomate, oregano",
-    precio: 2000,
-  },
-  {
-    nombre: "Pizza especial",
-    descripcion: "queso, jamon, morron",
-    precio: 2000,
-  },
-  {
-    nombre: "Heineken",
-    descripcion: "Heineken 710cm",
-    precio: 1000,
-  },
-  {
-    nombre: "Mojito",
-    descripcion: "Ron, limón, azúcar, menta o eucalipto y agua mineral.",
-    precio: 2300,
-  },
-  {
-    nombre: "Fernet",
-    descripcion: "Coca cola, branca",
-    precio: 1800,
-  },
-];
+import { ProductContext } from "../Views/Admin";
 
 function Productos() {
+  const { productos } = useContext(ProductContext);
   return (
     <div>
       <h1 className="text-center">Productos</h1>
@@ -43,6 +13,8 @@ function Productos() {
           nombre={producto.nombre}
           descripcion={producto.descripcion}
           precio={producto.precio}
+          tipo={producto.tipo}
+          item={producto.item}
         />
       ))}
     </div>
