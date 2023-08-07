@@ -12,7 +12,6 @@ function CreateProduct({ setCreate }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     axios.post(`${URL_BASE}/post`, data);
   };
 
@@ -70,8 +69,8 @@ function CreateProduct({ setCreate }) {
           <option value="tipo" selected disabled>
             Tipo
           </option>
-          <option value="bebida">Bebida</option>
-          <option value="comida">Comida</option>
+          <option value="Bebida">Bebida</option>
+          <option value="Comida">Comida</option>
         </select>
 
         {errors?.tipo && (
@@ -91,14 +90,14 @@ function CreateProduct({ setCreate }) {
           <option value="item" selected disabled>
             Item
           </option>
-          <option value="hamburguesas">Hamburguesas</option>
-          <option value="pizzas">Pizzas</option>
-          <option value="papas">Papas</option>
-          <option value="picadas">Picadas</option>
-          <option value="cervezas">Cervezas</option>
-          <option value="tragos">Tragos</option>
-          <option value="aperitivos">Aperitivos</option>
-          <option value="vinos">Vinos</option>
+          <option value="Hamburguesas">Hamburguesas</option>
+          <option value="Pizzas">Pizzas</option>
+          <option value="Papas">Papas</option>
+          <option value="Picadas">Picadas</option>
+          <option value="Cervezas">Cervezas</option>
+          <option value="Tragos">Tragos</option>
+          <option value="Aperitivos">Aperitivos</option>
+          <option value="Vinos">Vinos</option>
         </select>
         {errors?.item && (
           <span className="text-red-800 text-sm font-medium">
