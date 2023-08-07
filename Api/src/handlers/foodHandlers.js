@@ -16,10 +16,9 @@ const getFoods = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const { imagen, nombre, tipo, precio, descripcion, item } = req.body;
+    const { nombre, tipo, precio, descripcion, item } = req.body;
 
     const newCarta = await crear({
-      imagen,
       nombre,
       tipo,
       precio,
