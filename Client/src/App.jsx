@@ -4,11 +4,11 @@ import Admin from "./Views/Admin";
 
 function App() {
   return (
-    <div>
+    <div className="bg-white bg-no-repeat bg-cover overflow-hidden">
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      <Home/>
     </div>
   );
 }
