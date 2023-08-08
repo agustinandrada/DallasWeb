@@ -1,54 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import CreateProduct from "../components/CreateProduct";
 import UpdateProduct from "../components/UpdateProduct";
 import Productos from "../components/Productos";
+import axios from "axios";
 
 const URL_BASE = "http://localhost:3001";
-
-const productos = [
-  {
-    nombre: "Hamburguesa completa",
-    descripcion: "Tomate lechuga queso carne",
-    precio: 1500,
-    tipo: "comida",
-    item: "hamburguesas",
-  },
-  {
-    nombre: "Pizza napolitana",
-    descripcion: "queso, tomate, oregano",
-    precio: 2000,
-    tipo: "comida",
-    item: "pizzas",
-  },
-  {
-    nombre: "Pizza especial",
-    descripcion: "queso, jamon, morron",
-    precio: 2000,
-    tipo: "comida",
-    item: "pizzas",
-  },
-  {
-    nombre: "Heineken",
-    descripcion: "Heineken 710cm",
-    precio: 1000,
-    tipo: "bebida",
-    item: "cervezas",
-  },
-  {
-    nombre: "Mojito",
-    descripcion: "Ron, limón, azúcar, menta o eucalipto y agua mineral.",
-    precio: 2300,
-    tipo: "bebida",
-    item: "tragos",
-  },
-  {
-    nombre: "Fernet",
-    descripcion: "Coca cola, branca",
-    precio: 1800,
-    tipo: "bebida",
-    item: "tragos",
-  },
-];
 
 export const UpdateContext = createContext(false);
 export const ProductContext = createContext();
@@ -57,6 +13,18 @@ function Admin() {
   const [create, setCreate] = useState(false);
   const [update, setUpdate] = useState(false);
   const [updateData, setUpdateData] = useState({});
+  const [productos, setProductos] = useState({});
+
+  const obtenerProductos = async () => {
+    const comidas = (await axios(`${URL_BASE}/foods`)).data;
+    const bebidas = (await axios(`${URL_BASE}/drinks`)).data;
+    setProductos([...comidas, ...bebidas]);
+  };
+
+  useEffect(() => {
+    obtenerProductos();
+    console.log(productos);
+  }, [setProductos]);
 
   return (
     <ProductContext.Provider value={{ productos, updateData }}>
