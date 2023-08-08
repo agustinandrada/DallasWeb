@@ -1,4 +1,4 @@
-const { Carta } = require("../db");
+const { Carta, Item } = require("../db");
 
 const allDrinks = async () => {
   const bebidas = await Carta.findAll({
