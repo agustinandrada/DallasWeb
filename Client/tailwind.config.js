@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      primary: "Orbitron",
+      secondary: "Rajdhani",
+      tertiary: "Aldrich",
+    },
     screens: {
       sm: "640px",
       md: "768px",
@@ -10,8 +15,6 @@ export default {
     },
     backgroundImage: {
       site: "url('./assets/site-bg.jpg')",
-      about: "url('./assets/about.png')",
-      services: "url('./assets/services.png')",
     },
     extend: {},
   },
