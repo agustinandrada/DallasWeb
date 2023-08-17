@@ -28,7 +28,7 @@ const Bebidas = () => {
   return (
     <section>
       <div>
-        <h1 className="text-center uppercase text-xl text-white font-primary font-medium">Bebidas</h1>
+        <h1 className="text-center uppercase text-3xl text-white font-primary font-bold">Bebidas</h1>
         <br />
         <div>
           {itemsConBebidas.map((item) => {
@@ -37,15 +37,15 @@ const Bebidas = () => {
 
             return (
               <div key={id}>
-                <h1 className="uppercase text-xl py-3 text-white font-secondary">{tipo}</h1>
-                <hr/>
+                <h1 className="uppercase text-2xl py-3 text-white font-secondary font-semibold">{tipo}</h1>
                 {bebidasFiltradas.map((beb) => {
                   const { id, nombre, descripcion, precio } = beb;
                   return (
-                    <div key={id} className="text-white font-tertiary">
-                      <h2 className="uppercase text-l py-3">{nombre}</h2>
+                    <div key={id} className="text-white font-tertiary text-xl my-2">
+                      <h2 className="uppercase py-3">{nombre}</h2>
                       <p>{descripcion}</p>
                       <p>$ {precio}</p>
+                      <br/>
                       <hr/>
                     </div>
                   );
