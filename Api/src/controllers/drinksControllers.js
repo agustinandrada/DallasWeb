@@ -1,8 +1,9 @@
-const { Carta } = require("../db");
+const { Carta, Item } = require("../db");
 
 const allDrinks = async () => {
   const bebidas = await Carta.findAll({
     where: { tipo: "Bebida" },
+    include: [{ model: Item }],
   });
 
   if (bebidas.length === 0) {
