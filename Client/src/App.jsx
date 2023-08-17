@@ -1,14 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Views/Home";
 import Admin from "./Views/Admin";
+import Nav from "./Views/Nav"
 
 function App() {
   return (
-    <div className="bg-white bg-no-repeat bg-cover overflow-hidden">
+    <div className="bg-yellow-900 bg-no-repeat bg-cover overflow-hidden">
+      <Nav/>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-      <Home/>
     </div>
   );
 }
