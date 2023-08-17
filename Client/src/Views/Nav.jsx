@@ -5,7 +5,7 @@ function Home() {
     <div className="container mx-auto">
       <div className="flex flex-row items-center justify-between text-center">
         <img src={logo} alt="logo" className="max-w-[150px]" />
-        <a href="#">
+        <a  href="https://wa.me/5493425506898" target="_blank">
           <h1 className="mr-4 text-xl">Reservas</h1>
         </a>
       </div>
