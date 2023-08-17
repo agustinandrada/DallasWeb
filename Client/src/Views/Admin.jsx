@@ -20,7 +20,7 @@ function Admin() {
               onClick={() => {
                 setCreate(true);
               }}
-              className="text-black text-start btn text-xs py-2 font-primary font-bold"
+              className="text-black text-start btn text-xs py-2 font-primary font-bold cursor-pointer"
             >
             Nuevo Producto
             </p>
