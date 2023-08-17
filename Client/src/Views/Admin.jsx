@@ -13,17 +13,17 @@ function Admin() {
 
   return (
     <UpdateContext.Provider value={setUpdate}>
-      <main className="bg-sky-800 w-max mx-auto rounded-md shadow-2xl mt-32 py-10">
+      <main className="bg-black bg-opacity-70 p-4 rounded-lg shadow-md mt-16 mx-60">
         {!create && !update ? (
           <div>
-            <button
+            <p
               onClick={() => {
                 setCreate(true);
               }}
-              className="bg-slate-600 border border-pink-800"
+              className="text-black text-start btn text-xs py-2 font-primary font-bold"
             >
-              Crear nuevo Producto
-            </button>
+            Nuevo Producto
+            </p>
             <Productos />
           </div>
         ) : (
