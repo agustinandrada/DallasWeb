@@ -7,7 +7,7 @@ conn
   .sync({ force: true })
   .then(() => {
     server.listen(port, () => {
-      console.log(`server raised in port ${port}`); // eslint-disable-line no-console
+      console.log(`server raised in port ${port}`); // eslint-disable-line no-console asd
     });
   })
   .catch((err) => console.log(err));
