@@ -29,7 +29,7 @@ function Admin() {
   return (
     <ProductContext.Provider value={{ productos, updateData }}>
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
-        <main className="bg-sky-800 w-max mx-auto rounded-md shadow-2xl mt-32 py-10">
+        <main className="h-screen m-10 box-border p-7">
           {!create && !update ? (
             <div>
               <button

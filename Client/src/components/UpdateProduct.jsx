@@ -26,7 +26,7 @@ function UpdateProduct({ setUpdate }) {
   }, []);
 
   const onSubmit = (data) => {
-    axios.update(`${URL_BASE}/update`, data);
+    axios.patch(`${URL_BASE}/update/${updateData.id}`, data);
   };
 
   return (
