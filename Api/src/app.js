@@ -3,6 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const routes = require("./routes/index.js");
+const { Item } = require("./db");
+const allItems = require("./controllers/itemControllers");
 
 require("./db.js");
 
@@ -23,6 +25,20 @@ app.use(
 );
 
 app.use("/", routes);
+
+app.use(async (err, req, res, next) => {
+  try {
+    const itemCount = await Item.count();
+
+    if (itemCount === 0) {
+      await allItems();
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
