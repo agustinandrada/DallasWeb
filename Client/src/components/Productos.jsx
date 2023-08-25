@@ -6,6 +6,7 @@ function Productos() {
   const { productos } = useContext(ProductContext);
   console.log(productos);
   return (
+    <div className="flex justify-center mx-4 relative shadow-lg ">
     <div className="flex justify-center mx-4 relative shadow-lg dark:shadow-slate-950">
       <h1 className="text-center">Productos</h1>
       {productos.length > 0 ? (
