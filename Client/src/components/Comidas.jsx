@@ -33,7 +33,7 @@ const Bebidas = () => {
           Menu
         </h1>
         <h1 className="mt-4">
-          Bebidas
+          Comidas
         </h1>
         </div>
         <br />

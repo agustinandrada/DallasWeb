@@ -10,7 +10,7 @@ function Home() {
           </a>
         </div>
         <a href="https://wa.me/5493425506898" target="_blank" rel="noreferrer">
-          <button className="mr-4 text-xl text-yellow-400 font-thin font-tertiary">Reservas</button>
+          <button className="mr-4 text-xl text-yellow-400 font-bold font-tertiary">RESERVAS</button>
         </a>
       </div>
     </div>
