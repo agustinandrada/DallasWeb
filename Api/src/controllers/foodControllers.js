@@ -1,3 +1,4 @@
+const { error } = require("console");
 const { Carta, Item } = require("../db");
 
 const allFoods = async () => {
@@ -56,10 +57,10 @@ const actualizar = async (id, datos) => {
     item.descripcion = descripcion || item.descripcion;
     item.precio = precio || item.precio;
 
-    await item.save;
+    await item.save();
     return item;
   } else {
-    return statusCode(400);
+    throw new error("No se han encontrado en los registros");
   }
 };
 
