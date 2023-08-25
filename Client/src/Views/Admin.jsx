@@ -27,7 +27,6 @@ function Admin() {
   }, [setProductos]);
 
   return (
-<<<<<<< HEAD
     <ProductContext.Provider value={{ productos, updateData }}>
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
         <main className="h-screen m-10 box-border p-7">
@@ -55,33 +54,6 @@ function Admin() {
         </main>
       </UpdateContext.Provider>
     </ProductContext.Provider>
-=======
-    <UpdateContext.Provider value={setUpdate}>
-      <main className="bg-black bg-opacity-70 p-4 rounded-lg shadow-md mt-16 mx-60">
-        {!create && !update ? (
-          <div>
-            <p
-              onClick={() => {
-                setCreate(true);
-              }}
-              className="text-black text-start btn text-xs py-2 font-primary font-bold cursor-pointer"
-            >
-            Nuevo Producto
-            </p>
-            <Productos />
-          </div>
-        ) : (
-          <div>
-            {create ? (
-              <CreateProduct setCreate={setCreate} />
-            ) : (
-              <UpdateProduct setUpdate={setUpdate} />
-            )}
-          </div>
-        )}
-      </main>
-    </UpdateContext.Provider>
->>>>>>> 6ad75e64f3999d3414143aedfdb6ad1508acae4e
   );
 }
 
