@@ -59,7 +59,7 @@ const actualizar = async (id, datos) => {
     await item.save;
     return item;
   } else {
-    return statusCode(400);
+    throw new Error("No se encontro el id");
   }
 };
 
