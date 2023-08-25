@@ -8,8 +8,8 @@ const Bebidas = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response2 = await axios.get("http://dallas-backend-k4rb/items");
-        const response = await axios.get("http://dallas-backend-k4rb/foods");
+        const response2 = await axios.get("https://dallas-backend-k4rb-dev.fl0.io/items");
+        const response = await axios.get("https://dallas-backend-k4rb-dev.fl0.io/foods");
 
         setBebidas(response.data);
         setItems(response2.data);
