@@ -60,7 +60,7 @@ const actualizar = async (id, datos) => {
     await item.save();
     return item;
   } else {
-    throw new error("No se encontro el id");
+    throw new Error("No se encontro el id");
   }
 };
 
