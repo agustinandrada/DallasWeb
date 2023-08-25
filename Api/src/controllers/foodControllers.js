@@ -56,7 +56,7 @@ const actualizar = async (id, datos) => {
     item.descripcion = descripcion || item.descripcion;
     item.precio = precio || item.precio;
 
-    await item.save;
+    await item.save();
     return item;
   } else {
     throw new Error("No se encontro el id");
