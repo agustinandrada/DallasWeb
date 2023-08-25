@@ -4,7 +4,7 @@ function Home() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-row items-center justify-between text-center">
-        <div className="ml-4 max-w-[150px] mt-3 invert-colors">
+        <div className="ml-4 max-w-[150px] hover:rotate-12 mt-3 invert-colors ">
           <a href="/">
           <img src={logo} alt="logo" className="w-full h-full rounded-full" />
           </a>
