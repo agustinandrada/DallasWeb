@@ -4,6 +4,6 @@ const { update } = require("../handlers/foodHandlers");
 
 const foodRoutes = Router();
 
-foodRoutes.get("/:id", update);
+foodRoutes.patch("/:id", update);
 
 module.exports = foodRoutes;
