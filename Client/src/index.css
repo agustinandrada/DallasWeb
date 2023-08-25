@@ -1,30 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.invert-colors {
+  filter: invert(1);
+}
 
 .btn {
-  background: linear-gradient(
-    92.23deg,
-    #e2ccbe 21.43%,
-    #f0c8b1 50.63%,
-    #e49f6a 100%,
-    #f07f07 117.04%
-  );
-  box-shadow: 0px 4.42184px 107.23px rgba(181, 130, 0, 0.51);
+  background: rgb(0, 0, 0);
+  box-shadow: 0px 0px 15px rgb(37, 35, 35);
   border-radius: 10px;
   width: 100px;
   height: 30px;
   text-align: center;
+  color: rgb(253, 253, 253);
+  align-items: center;
 }
 
 .btn:hover {
-  background: linear-gradient(
-    92.23deg,
-    #ef8300 117.04%,
-    #fa802a 100%,
-    #f3926f 50.63%,
-    #fba868 21.43%,
-  );
+  width: 103px;
+  height: 33px;
+  text-align: center;
+  align-items: center;
+  color: #fff;
 }
 
 .gradient,

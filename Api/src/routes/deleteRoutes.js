@@ -4,6 +4,6 @@ const { deleteItem } = require("../handlers/foodHandlers");
 
 const foodRoutes = Router();
 
-foodRoutes.get("/:id", deleteItem);
+foodRoutes.delete("/:id", deleteItem);
 
 module.exports = foodRoutes;

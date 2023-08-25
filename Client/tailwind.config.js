@@ -3,9 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
-      primary: "Orbitron",
-      secondary: "Rajdhani",
-      tertiary: "Aldrich",
+      primary: "sans-serif",
+      secondary: "sans-serif",
+      tertiary: "sans-serif",
     },
     screens: {
       sm: "640px",
@@ -14,7 +14,7 @@ export default {
       xl: "1200px",
     },
     backgroundImage: {
-      site: "url('./assets/site-bg.jpg')",
+      site: "url('./assets/fondo.png')",
     },
     extend: {},
   },
