@@ -57,14 +57,14 @@ if (loading) {
             const bebidasFiltradas = bebidas.filter((beb) => beb.itemId === id);
 
             return (
-              <div key={id}>
+              <div id={tipo} key={id}>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">
                   {tipo}
                 </h1>
                 {bebidasFiltradas.map((beb) => {
                   const { id, nombre, descripcion, precio } = beb;
                   return (
-                    <div  key={id} className="text-white font-tertiary text-xl my-2 flex flex-col">
+                    <div key={id} className="text-white font-tertiary text-xl my-2 flex flex-col">
                       <div className="flex items-center justify-between">
                         <h2 className="uppercase py-3 font-semibold" style={{ letterSpacing: '0.1em' }}>{nombre}</h2>
                         <p className="text-2xl font-tertiary font-bold" style={{ letterSpacing: '0.1em' }}>${precio}</p>
