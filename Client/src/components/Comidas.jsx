@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import load from "../assets/load.gif"
 
 const Comidas = () => {
   const [comidas, setComidas] = useState([]);
@@ -52,7 +51,7 @@ const Comidas = () => {
             const comidasFiltradas = comidas.filter((com) => com.itemId === id);
 
             return (
-              <div key={id}>
+              <div id={tipo} key={id}>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">{tipo}</h1>
                 {comidasFiltradas.map((com) => {
                   const { id, nombre, descripcion, precio } = com;
