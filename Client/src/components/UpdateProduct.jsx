@@ -33,7 +33,7 @@ function UpdateProduct({ setUpdate }) {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mb-0 space-y-6 p-10 flex flex-col "
+        className="mb-0 space-y-6 p-10 flex flex-col text-black"
       >
         <label htmlFor="nombre">Nombre </label>
         <input

@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { BiEdit } from "react-icons/bi";
+import { BsTrash } from "react-icons/bs";
+import { UpdateContext } from "../Views/Admin";
 
-const Bebidas = () => {
+const BebidasAdmin = () => {
   const [bebidas, setBebidas] = useState([]);
   const [items, setItems] = useState([]);
+
+  const { setUpdate, setUpdateData } = useContext(UpdateContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,13 +52,13 @@ const Bebidas = () => {
                   {tipo}
                 </h1>
                 {bebidasFiltradas.map((beb) => {
-                  const { id, nombre, descripcion, precio } = beb;
+                  const { id, nombre, descripcion, precio, tipo } = beb;
                   return (
                     <div
                       key={id}
                       className="text-white font-tertiary text-xl my-2 flex flex-col"
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="grid grid-flow-row grid-cols-4">
                         <h2
                           className="uppercase py-3 font-semibold"
                           style={{ letterSpacing: "0.1em" }}
@@ -66,6 +71,20 @@ const Bebidas = () => {
                         >
                           ${precio}
                         </p>
+                        <BiEdit
+                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 "
+                          onClick={() => {
+                            setUpdate(true);
+                            setUpdateData({
+                              nombre,
+                              descripcion,
+                              precio,
+                              tipo,
+                              item,
+                            });
+                          }}
+                        />
+                        <BsTrash className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 " />
                       </div>
                       <p className="flex flex-col text-neutral-400">
                         {" "}
@@ -84,4 +103,4 @@ const Bebidas = () => {
   );
 };
 
-export default Bebidas;
+export default BebidasAdmin;

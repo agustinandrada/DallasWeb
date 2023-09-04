@@ -42,7 +42,9 @@
 }
 
 body{
-    background-color: slategrey;
+    background-image: url("./assets/fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat
 }
 
 @layer base {

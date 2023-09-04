@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { BiEdit } from "react-icons/bi";
+import { BsTrash } from "react-icons/bs";
+import { UpdateContext } from "../Views/Admin";
 
-const Bebidas = () => {
-  const [bebidas, setBebidas] = useState([]);
+const ComidasAdmin = () => {
+  const [comidas, setComidas] = useState([]);
   const [items, setItems] = useState([]);
+  const { setUpdate, setUpdateData } = useContext(UpdateContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,10 +16,10 @@ const Bebidas = () => {
           "https://dallas-backend-k4rb-dev.fl0.io/items"
         );
         const response = await axios.get(
-          "https://dallas-backend-k4rb-dev.fl0.io/drinks"
+          "https://dallas-backend-k4rb-dev.fl0.io/foods"
         );
 
-        setBebidas(response.data);
+        setComidas(response.data);
         setItems(response2.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,8 +28,9 @@ const Bebidas = () => {
     fetchData();
   }, []);
 
-  const itemsConBebidas = items.filter((item) =>
-    bebidas.some((beb) => beb.itemId === item.id)
+  // Filtrar los "items" que tengan bebidas asociadas
+  const itemsConComidas = items.filter((item) =>
+    comidas.some((comida) => comida.itemId === item.id)
   );
 
   return (
@@ -33,27 +38,30 @@ const Bebidas = () => {
       <div>
         <div className="mt-5 py-10 uppercase text-7xl text-white font-primary font-bold">
           <h1>Menu</h1>
-          <h1 className="mt-4">Bebidas</h1>
+          <h1 className="mt-4">Comidas</h1>
         </div>
         <br />
-        <div>
-          {itemsConBebidas.map((item) => {
+        <br />
+        <div className="">
+          {itemsConComidas.map((item) => {
             const { id, tipo } = item;
-            const bebidasFiltradas = bebidas.filter((beb) => beb.itemId === id);
+            const comidasFiltradas = comidas.filter(
+              (comida) => comida.itemId === id
+            );
 
             return (
               <div key={id}>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">
                   {tipo}
                 </h1>
-                {bebidasFiltradas.map((beb) => {
-                  const { id, nombre, descripcion, precio } = beb;
+                {comidasFiltradas.map((beb) => {
+                  const { id, nombre, descripcion, precio, tipo } = beb;
                   return (
                     <div
                       key={id}
                       className="text-white font-tertiary text-xl my-2 flex flex-col"
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="grid grid-flow-row grid-cols-4">
                         <h2
                           className="uppercase py-3 font-semibold"
                           style={{ letterSpacing: "0.1em" }}
@@ -66,6 +74,20 @@ const Bebidas = () => {
                         >
                           ${precio}
                         </p>
+                        <BiEdit
+                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 "
+                          onClick={() => {
+                            setUpdate(true);
+                            setUpdateData({
+                              nombre,
+                              descripcion,
+                              precio,
+                              tipo,
+                              item,
+                            });
+                          }}
+                        />
+                        <BsTrash className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 " />
                       </div>
                       <p className="flex flex-col text-neutral-400">
                         {" "}
@@ -83,5 +105,4 @@ const Bebidas = () => {
     </section>
   );
 };
-
-export default Bebidas;
+export default ComidasAdmin;
