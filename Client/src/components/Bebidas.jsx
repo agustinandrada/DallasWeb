@@ -77,7 +77,7 @@ if (loading) {
                           {nombre}
                         </h2>
                         <p
-                          className="text-xl font-tertiary font-bold"
+                          className="text-2xl font-tertiary font-bold"
                           style={{ letterSpacing: "0.1em" }}
                         >
                           ${precio}

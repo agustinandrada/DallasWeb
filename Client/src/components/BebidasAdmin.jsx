@@ -51,9 +51,11 @@ const BebidasAdmin = () => {
 
             return (
               <div key={id}>
+                <br/>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">
                   {tipo}
                 </h1>
+                <br/>
                 {bebidasFiltradas.map((beb) => {
                   const { id, nombre, descripcion, precio, tipo } = beb;
                   return (
@@ -61,21 +63,21 @@ const BebidasAdmin = () => {
                       key={id}
                       className="text-white font-tertiary text-xl my-2 flex flex-col"
                     >
-                      <div className="grid grid-flow-row grid-cols-4">
+                      <div className="grid grid-flow-row grid-cols-4 gap-20">
                         <h2
-                          className="uppercase py-3 font-semibold"
+                          className="uppercase text-2xl py-3 font-semibold"
                           style={{ letterSpacing: "0.1em" }}
                         >
                           {nombre}
                         </h2>
                         <p
-                          className="text-xl font-tertiary font-bold"
+                          className="text-2xl py-5 font-tertiary font-bold"
                           style={{ letterSpacing: "0.1em" }}
                         >
                           ${precio}
                         </p>
                         <BiEdit
-                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 transition-transform transform hover:scale-150"
+                          className="cursor-pointer my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-blue-700"
                           onClick={() => {
                             setUpdate(true);
                             setUpdateData({
@@ -89,7 +91,7 @@ const BebidasAdmin = () => {
                           }}
                         />
                         <BsTrash
-                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 transition-transform transform hover:scale-150"
+                          className="cursor-pointer my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-red-700"
                           onClick={() => {
                             Swal.fire({
                               title: "¿Seguro que deseas eliminar?",
@@ -119,6 +121,7 @@ const BebidasAdmin = () => {
                         {descripcion}{" "}
                       </p>
                       <br />
+                      <hr/>
                     </div>
                   );
                 })}

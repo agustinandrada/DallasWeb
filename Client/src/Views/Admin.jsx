@@ -19,18 +19,19 @@ function Admin() {
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
         <main className="m-5 box-border p-5">
           {!create && !update ? (
-            <div>
-              <div className="flex justify-center">
+            <div className="flex justify-between items-start">
+              <Productos />
+              <div className="flex justify-center mt-20 mr-20 px-40 ">
                 <button
                   onClick={() => {
                     setCreate(true);
                   }}
-                  className="w-52 bg-white hover:bg-gray-200 text-black p-1 border rounded-md transition-transform transform hover:scale-105"
+                  className=" bg-yellow-600 w-80 h-20 hover:bg-yellow-400 hover:text-black text-white font-secondary uppercase text-2xl font-bold p-1 rounded-md transition-transform transform hover:scale-105"
+                  style={{letterSpacing:"1px"}}
                 >
                   Agregar Producto
                 </button>
               </div>
-              <Productos />
             </div>
           ) : (
             <div>
