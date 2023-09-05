@@ -17,7 +17,7 @@ function Admin() {
   return (
     <ProductContext.Provider value={{ updateData }}>
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
-        <main className="m-10 box-border p-7">
+        <main className="m-5 box-border p-5">
           {!create && !update ? (
             <div>
               <div className="flex justify-center">
@@ -25,9 +25,9 @@ function Admin() {
                   onClick={() => {
                     setCreate(true);
                   }}
-                  className="bg-white hover:bg-gray-200 text-black p-1 border rounded-md "
+                  className="w-52 bg-white hover:bg-gray-200 text-black p-1 border rounded-md transition-transform transform hover:scale-105"
                 >
-                  Crear nuevo Producto
+                  Agregar Producto
                 </button>
               </div>
               <Productos />

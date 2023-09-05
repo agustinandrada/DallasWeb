@@ -3,6 +3,9 @@ import axios from "axios";
 import { BiEdit } from "react-icons/bi";
 import { BsTrash } from "react-icons/bs";
 import { UpdateContext } from "../Views/Admin";
+import Swal from "sweetalert2";
+
+const URL_BASE = "https://dallas-backend-k4rb-dev.fl0.io";
 
 const BebidasAdmin = () => {
   const [bebidas, setBebidas] = useState([]);
@@ -63,7 +66,6 @@ const BebidasAdmin = () => {
                           className="uppercase py-3 font-semibold"
                           style={{ letterSpacing: "0.1em" }}
                         >
-                          {console.log(id)}
                           {nombre}
                         </h2>
                         <p
@@ -73,7 +75,7 @@ const BebidasAdmin = () => {
                           ${precio}
                         </p>
                         <BiEdit
-                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 "
+                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 transition-transform transform hover:scale-150"
                           onClick={() => {
                             setUpdate(true);
                             setUpdateData({
@@ -86,7 +88,31 @@ const BebidasAdmin = () => {
                             });
                           }}
                         />
-                        <BsTrash className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 " />
+                        <BsTrash
+                          className="cursor-pointer relative my-auto mr-6 w-fit h-fit p-4 transition-transform transform hover:scale-150"
+                          onClick={() => {
+                            Swal.fire({
+                              title: "¿Seguro que deseas eliminar?",
+                              text: "No podrás revertir esto",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3085d6",
+                              cancelButtonColor: "#d33",
+                              confirmButtonText: "Si, elimínalo!",
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                axios.delete(`${URL_BASE}/delete/${id}`);
+                                Swal.fire(
+                                  "Eliminado!",
+                                  "Tu producto ha sido eliminado.",
+                                  "success"
+                                ).then(() => {
+                                  window.location.reload();
+                                });
+                              }
+                            });
+                          }}
+                        />
                       </div>
                       <p className="flex flex-col text-neutral-400">
                         {" "}

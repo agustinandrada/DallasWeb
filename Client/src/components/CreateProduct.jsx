@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const URL_BASE = "https://dallas-backend-k4rb-dev.fl0.io";
 
@@ -12,7 +12,19 @@ function CreateProduct({ setCreate }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    axios.post(`${URL_BASE}/post`, data);
+    Swal.fire({
+      title: "Cargando...",
+      imageUrl: "https://usagif.com/wp-content/uploads/loading-4.gif",
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+      showConfirmButton: false,
+    });
+    axios.post(`${URL_BASE}/post`, data).then(() => {
+      Swal.fire("OK", "Producto creado exitosamente", "success").then(() => {
+        window.location.reload();
+      });
+    });
   };
 
   return (
@@ -116,16 +128,16 @@ function CreateProduct({ setCreate }) {
             Campo requerido
           </span>
         )}
-        <button className="text-white border-2 border-white w-52 m-auto bg-black rounded-md">
-          Submit
+        <button className="text-white border-2 border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
+          Crear
         </button>
       </form>
 
       <button
         onClick={() => setCreate(false)}
-        className="border border-slate-800 bg-red-900 w-max m-5 p-1"
+        className="border border-slate-800 bg-yellow-500  m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600 "
       >
-        Back
+        Volver
       </button>
     </div>
   );
