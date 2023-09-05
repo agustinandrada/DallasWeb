@@ -49,7 +49,7 @@ function UpdateProduct({ setUpdate }) {
         onSubmit={handleSubmit(onSubmit)}
         className="mb-0 space-y-6 p-10 flex flex-col text-black w-2/4 m-auto"
       >
-        <label className="text-white" htmlFor="nombre">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="nombre">
           Nombre{" "}
         </label>
         <input
@@ -60,11 +60,11 @@ function UpdateProduct({ setUpdate }) {
           })}
         />
         {errors?.nombre && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <label className="text-white" htmlFor="descripcion">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="descripcion">
           Descripcion{" "}
         </label>
         <textarea
@@ -75,11 +75,11 @@ function UpdateProduct({ setUpdate }) {
           })}
         />
         {errors?.descripcion && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <label className="text-white" htmlFor="precio">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="precio">
           Precio{" "}
         </label>
         <input
@@ -90,7 +90,7 @@ function UpdateProduct({ setUpdate }) {
           })}
         />
         {errors?.precio && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
@@ -112,7 +112,7 @@ function UpdateProduct({ setUpdate }) {
         </select>
 
         {errors?.tipo && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
@@ -139,18 +139,18 @@ function UpdateProduct({ setUpdate }) {
           <option value="Vinos">Vinos</option>
         </select>
         {errors?.item && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <button className="text-white border-2 border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
+        <button className="text-white border-2 font-primary text-2xl border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
           Modificar
         </button>
       </form>
 
       <button
         onClick={() => setUpdate(false)}
-        className="border border-slate-800 bg-yellow-500  m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600 "
+        className="bg-yellow-500 text-black m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-400 "
       >
         Volver
       </button>
