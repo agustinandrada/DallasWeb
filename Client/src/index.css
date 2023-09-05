@@ -42,8 +42,11 @@
 }
 
 body{
-    background-image: url("../src/assets/fondo.png");
-    background-size: cover
+
+    background-image: url("./assets/fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat
+
 }
 
 @layer base {

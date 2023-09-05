@@ -1,70 +1,117 @@
-import { useState } from "react";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
+const URL_BASE = "https://dallas-backend-k4rb-dev.fl0.io";
 
 function CreateProduct({ setCreate }) {
-  const [form, setForm] = useState({
-    nombre: "",
-    descripcion: "",
-    precio: "",
-    tipo: "",
-    item: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log(name, value);
-
-    setForm({ ...form, [name]: value });
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "Cargando...",
+      imageUrl: "https://usagif.com/wp-content/uploads/loading-4.gif",
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+      showConfirmButton: false,
+    });
+    axios.post(`${URL_BASE}/post`, data).then(() => {
+      Swal.fire("OK", "Producto creado exitosamente", "success").then(() => {
+        window.location.reload();
+      });
+    });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios.post(`${URL_BASE}/post`, form);
-  };
   return (
     <div>
-      <h1 className="text-center text-3xl text-white font-bold ">
-        Crear Nuevo Producto
-      </h1>
       <form
-        className="mb-0 space-y-6 p-10 flex flex-col "
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
+        className="mb-0 space-y-6 p-10 flex flex-col text-black w-2/4 m-auto"
       >
+        <label className="text-white" htmlFor="nombre">
+          Nombre{" "}
+        </label>
         <input
-          onChange={handleChange}
-          className="border-2 border-gray-300 w-96 m-auto  text-sm"
+          className="p-1 rounded-sm"
           type="text"
-          placeholder="Ingrese nombre del producto..."
+          {...register("nombre", {
+            required: true,
+          })}
         />
+        {errors?.nombre && (
+          <span className="text-red-500 text-sm font-medium">
+            Campo requerido
+          </span>
+        )}
+        <label className="text-white" htmlFor="descripcion">
+          Descripcion{" "}
+        </label>
+        <textarea
+          className="p-1 rounded-sm h-40"
+          type="text"
+          {...register("descripcion", {
+            required: true,
+          })}
+        />
+        {errors?.descripcion && (
+          <span className="text-red-500 text-sm font-medium">
+            Campo requerido
+          </span>
+        )}
+        <label className="text-white" htmlFor="precio">
+          Precio{" "}
+        </label>
         <input
-          onChange={handleChange}
-          className="border-2 border-gray-300 w-96 m-auto text-sm"
-          type="text"
-          placeholder="Ingrese descripción del producto..."
+          className="p-1 rounded-sm w-52"
+          type="number"
+          {...register("precio", {
+            required: true,
+          })}
         />
-        <input
-          onChange={handleChange}
-          className="border-2 border-gray-300 w-96 m-auto text-sm"
-          type="text"
-          placeholder="Ingrese precio del producto..."
-        />
+        {errors?.precio && (
+          <span className="text-red-500 text-sm font-medium">
+            Campo requerido
+          </span>
+        )}
+        <br />
+
+        {/* TIPO */}
         <select
-          name="tipo"
-          className="border-2 border-gray-300 w-96 m-auto text-sm"
-          onChange={handleChange}
+          className="p-1 rounded-sm h-9 origin-top"
+          {...register("tipo", {
+            validate: (value) => {
+              return value !== "tipo";
+            },
+          })}
         >
-          <option value="" selected disabled>
+          <option value="tipo" selected disabled className="p-1">
             Tipo
           </option>
-          <option value="bebida">Bebida</option>
-          <option value="comida">Comida</option>
+          <option value="Bebida">Bebida</option>
+          <option value="Comida">Comida</option>
         </select>
+
+        {errors?.tipo && (
+          <span className="text-red-500 text-sm font-medium ">
+            Campo requerido
+          </span>
+        )}
+
+        {/* ITEM */}
         <select
-          name="item"
-          className="border-2 border-gray-300 w-96 m-auto text-sm"
-          onChange={handleChange}
+          className="p-1 rounded-sm h-9  origin-top"
+          {...register("item", {
+            validate: (value) => {
+              return value !== "item";
+            },
+          })}
         >
-          <option value="" selected disabled>
+          <option value="item" selected disabled className="p-1">
             Item
           </option>
           <option value="Hamburguesas">Hamburguesas</option>
@@ -76,15 +123,21 @@ function CreateProduct({ setCreate }) {
           <option value="Aperitivos">Aperitivos</option>
           <option value="Vinos">Vinos</option>
         </select>
-        <button className="bg-slate-600 border-l-rose-950 rounded-lg text-white text-lg  mt- mx-48 p-3 hover:bg-slate-500">
-          Agregar Producto
+        {errors?.item && (
+          <span className="text-red-500 text-sm font-medium">
+            Campo requerido
+          </span>
+        )}
+        <button className="text-white border-2 border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
+          Crear
         </button>
       </form>
+
       <button
         onClick={() => setCreate(false)}
-        className="border border-slate-800 bg-red-900 w-max m-5 p-1"
+        className="border border-slate-800 bg-yellow-500  m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600 "
       >
-        Back
+        Volver
       </button>
     </div>
   );
