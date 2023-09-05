@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Bebidas = () => {
-  const [bebidas, setBebidas] = useState([]);
+const Comidas = () => {
+  const [comidas, setComidas] = useState([]);
   const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -11,8 +12,9 @@ const Bebidas = () => {
         const response2 = await axios.get("https://dallas-backend-k4rb-dev.fl0.io/items");
         const response = await axios.get("https://dallas-backend-k4rb-dev.fl0.io/foods");
 
-        setBebidas(response.data);
+        setComidas(response.data);
         setItems(response2.data);
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -20,9 +22,14 @@ const Bebidas = () => {
     fetchData();
   }, []);
 
-  // Filtrar los "items" que tengan bebidas asociadas
-  const itemsConBebidas = items.filter((item) =>
-    bebidas.some((beb) => beb.itemId === item.id)
+ 
+  if (loading) {
+    return (
+    "");
+  }
+
+  const itemsConComidas = items.filter((item) =>
+    comidas.some((com) => com.itemId === item.id)
   );
 
   return (
@@ -39,20 +46,20 @@ const Bebidas = () => {
         <br />
         <br />
         <div className="">
-          {itemsConBebidas.map((item) => {
+          {itemsConComidas.map((item) => {
             const { id, tipo } = item;
-            const bebidasFiltradas = bebidas.filter((beb) => beb.itemId === id);
+            const comidasFiltradas = comidas.filter((com) => com.itemId === id);
 
             return (
-              <div key={id}>
+              <div id={tipo} key={id}>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">{tipo}</h1>
-                {bebidasFiltradas.map((beb) => {
-                  const { id, nombre, descripcion, precio } = beb;
+                {comidasFiltradas.map((com) => {
+                  const { id, nombre, descripcion, precio } = com;
                   return (
                     <div  key={id} className="text-white font-tertiary text-xl my-2 flex flex-col">
                       <div className="flex items-center justify-between">
                         <h2 className="uppercase py-3 font-semibold" style={{ letterSpacing: '0.1em' }}>{nombre}</h2>
-                        <p className="text-xl font-tertiary font-bold" style={{ letterSpacing: '0.1em' }}>${precio}</p>
+                        <p className="text-2xl font-tertiary font-bold" style={{ letterSpacing: '0.1em' }}>${precio}</p>
                       </div>
                       <p className="flex flex-col text-neutral-400"> {descripcion} </p>
                       <br/>
@@ -68,4 +75,4 @@ const Bebidas = () => {
   );
 };
 
-export default Bebidas;
+export default Comidas;
