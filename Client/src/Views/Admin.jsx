@@ -13,33 +13,23 @@ function Admin() {
   const [create, setCreate] = useState(false);
   const [update, setUpdate] = useState(false);
   const [updateData, setUpdateData] = useState({});
-  const [productos, setProductos] = useState({});
-
-  const obtenerProductos = async () => {
-    const comidas = (await axios(`${URL_BASE}/foods`)).data;
-    const bebidas = (await axios(`${URL_BASE}/drinks`)).data;
-    setProductos([...comidas, ...bebidas]);
-  };
-
-  useEffect(() => {
-    obtenerProductos();
-    console.log(productos);
-  }, [setProductos]);
 
   return (
-    <ProductContext.Provider value={{ productos, updateData }}>
+    <ProductContext.Provider value={{ updateData }}>
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
         <main className="m-10 box-border p-7">
           {!create && !update ? (
             <div>
-              <button
-                onClick={() => {
-                  setCreate(true);
-                }}
-                className="bg-slate-600 border border-pink-800"
-              >
-                Crear nuevo Producto
-              </button>
+              <div className="flex justify-center">
+                <button
+                  onClick={() => {
+                    setCreate(true);
+                  }}
+                  className="bg-white hover:bg-gray-200 text-black p-1 border rounded-md "
+                >
+                  Crear nuevo Producto
+                </button>
+              </div>
               <Productos />
             </div>
           ) : (

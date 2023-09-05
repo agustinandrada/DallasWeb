@@ -63,6 +63,7 @@ const BebidasAdmin = () => {
                           className="uppercase py-3 font-semibold"
                           style={{ letterSpacing: "0.1em" }}
                         >
+                          {console.log(id)}
                           {nombre}
                         </h2>
                         <p
@@ -81,6 +82,7 @@ const BebidasAdmin = () => {
                               precio,
                               tipo,
                               item,
+                              id,
                             });
                           }}
                         />

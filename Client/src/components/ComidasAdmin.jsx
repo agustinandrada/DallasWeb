@@ -54,8 +54,8 @@ const ComidasAdmin = () => {
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">
                   {tipo}
                 </h1>
-                {comidasFiltradas.map((beb) => {
-                  const { id, nombre, descripcion, precio, tipo } = beb;
+                {comidasFiltradas.map((comida) => {
+                  const { id, nombre, descripcion, precio, tipo } = comida;
                   return (
                     <div
                       key={id}
@@ -84,6 +84,7 @@ const ComidasAdmin = () => {
                               precio,
                               tipo,
                               item,
+                              id,
                             });
                           }}
                         />
