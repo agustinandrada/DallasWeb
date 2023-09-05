@@ -4,13 +4,17 @@ function Home() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-row items-center justify-between text-center">
-        <div className="ml-4 max-w-[150px] mt-3 invert-colors">
+        <div className="ml-4 max-w-[150px] mt-3 invert-colors ">
           <a href="/">
             <img src={logo} alt="logo" className="w-full h-full rounded-full" />
           </a>
         </div>
         <a href="https://wa.me/5493425506898" target="_blank" rel="noreferrer">
+<<<<<<< HEAD
           <button className="mr-4 text-xl text-yellow-400 font-bold font-tertiary hover:text-2xl">RESERVAS</button>
+=======
+          <button className="mr-4 text-xl text-yellow-400 font-bold font-tertiary hover:text-white">RESERVAS</button>
+>>>>>>> d7cbc3e9e9276e5f854115c9fac062c4e8a84be0
         </a>
       </div>
     </div>

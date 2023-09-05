@@ -1,3 +1,4 @@
+const { error } = require("console");
 const { Carta, Item } = require("../db");
 
 const allFoods = async () => {
