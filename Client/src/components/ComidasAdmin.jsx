@@ -5,7 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { UpdateContext } from "../Views/Admin";
 import Swal from "sweetalert2";
 
-const URL_BASE = "https://dallas-backend-k4rb-dev.fl0.io";
+const URL_BASE = "https://dallas-backend-k4rb-dev.fl0.io";//anotacion
 
 const ComidasAdmin = () => {
   const [comidas, setComidas] = useState([]);
