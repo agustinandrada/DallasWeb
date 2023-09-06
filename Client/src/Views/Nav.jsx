@@ -11,7 +11,7 @@ function Home() {
           </a>
         </div>
         <a href="https://wa.me/5493425506898" target="_blank" rel="noreferrer">
-          <button className="mr-4 text-xl text-yellow-400 font-bold font-tertiary hover:text-white">RESERVAS</button>
+          <button className="mr-4 text-xl text-yellow-400 font-bold font-tertiary hover:text-white" style={{letterSpacing:"2px"}}>RESERVAS</button>
         </a>
       </div>
     </div>
