@@ -24,22 +24,19 @@
   color: #fff;
 }
 
-.gradient,
-.active {
-  background: linear-gradient(
-    92.23deg,
-    #406aff 21.43%,
-    #3bace2 50.63%,
-    #b936ee 100%,
-    #ff56f6 117.04%
-  );
+.selector-container {
+  position: fixed;
+  top: 0;
+  left: 0; 
+  width: 100%;
+  height: 5%;
+  margin-top: 100px;
+  background-color: rgba(0, 0, 0, 0.7); /* Color de fondo negro translúcido */
+  overflow-y: auto; /* Agrega scroll vertical */
+  overflow-x: hidden; /* Oculta el scroll horizontal */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
-.active {
-  color: #fff;
-  padding: 1rem;
-  border-radius: 100%;
-}
 
 body{
 
@@ -48,6 +45,8 @@ body{
     background-repeat: no-repeat
 
 }
+
+
 
 @layer base {
   body {

@@ -3,8 +3,8 @@ import { Link } from "react-scroll";
 
 const Selector = () => {
   return (
-    <nav>
-      <div className="flex flex-row container mx-auto border-b-2 mt-10 overflow-x-auto pl-14 pr-5 pb-3">
+    <nav className="w-full h-14 bg-black bg-opacity-90 flex z-50">
+      <div className="flex flex-rowcontainer mx-auto overflow-x-auto pl-5 pr-5">
         <div className="flex items-center justify-center text-center space-x-8 uppercase text-2xl text-yellow-400 font-secondary font-semibold">
           
           <Link
@@ -12,7 +12,7 @@ const Selector = () => {
             activeClass="active"
             smooth={true}
             spy={true}
-            offset={-200}
+            offset={-80}
             className="cursor-pointer"
           >
           <p>Cervezas</p>
@@ -21,6 +21,7 @@ const Selector = () => {
             to="Tragos"
             activeClass="active"
             smooth={true}
+            offset={-80}
             spy={true}
             className="cursor-pointer"
           >
@@ -30,6 +31,7 @@ const Selector = () => {
             to="Vinos"
             activeClass="active"
             smooth={true}
+            offset={-80}
             spy={true}
             className="cursor-pointer"
           >
@@ -39,6 +41,7 @@ const Selector = () => {
             to="Aperitivos"
             activeClass="active"
             smooth={true}
+            offset={-80}
             spy={true}
             className="cursor-pointer"
           >
@@ -48,6 +51,7 @@ const Selector = () => {
             to="Picadas"
             activeClass="active"
             smooth={true}
+            offset={-80}
             spy={true}
             className="cursor-pointer"
           >
@@ -59,6 +63,7 @@ const Selector = () => {
             activeClass="active"
             smooth={true}
             spy={true}
+            offset={-80}
             className="cursor-pointer"
           >
             <p>Papas</p>
@@ -69,6 +74,7 @@ const Selector = () => {
             activeClass="active"
             smooth={true}
             spy={true}
+            offset={-80}
             className="cursor-pointer"
           >
             <p>Pizzas</p>
@@ -78,6 +84,7 @@ const Selector = () => {
             to="Hamburguesas"
             activeClass="active"
             smooth={true}
+            offset={-80}
             spy={true}
             className="cursor-pointer"
           >
