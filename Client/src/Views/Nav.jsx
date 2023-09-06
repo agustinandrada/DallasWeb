@@ -2,6 +2,7 @@ import logo from "../assets/logo.png";
 
 function Home() {
   return (
+    
     <div className="container mx-auto">
       <div className="flex flex-row items-center justify-between text-center">
         <div className="ml-4 max-w-[150px] mt-3 invert-colors ">
@@ -14,6 +15,7 @@ function Home() {
         </a>
       </div>
     </div>
+
   );
 }
 

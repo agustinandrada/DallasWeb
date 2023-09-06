@@ -4,7 +4,7 @@ import Selector from "../components/Selector";
 function Home() {
   return (
   <div className="bg-opacity-60">
-    <div>
+    <div className="sticky top-0">
       <Selector/>
     </div>
     <div className="mx-5">
