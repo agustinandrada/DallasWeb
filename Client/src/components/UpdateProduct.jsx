@@ -28,9 +28,9 @@ function UpdateProduct({ setUpdate }) {
   const onSubmit = (data) => {
     Swal.fire({
       title: "Cargando...",
-      imageUrl: "https://usagif.com/wp-content/uploads/loading-4.gif",
+      imageUrl: "https://media.giphy.com/media/3o7bu8sRnYpTOG1p8k/giphy.gif",
       imageWidth: 400,
-      imageHeight: 200,
+      imageHeight: 400,
       imageAlt: "Custom image",
       showConfirmButton: false,
     });
