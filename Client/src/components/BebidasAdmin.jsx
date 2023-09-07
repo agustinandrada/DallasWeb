@@ -51,11 +51,11 @@ const BebidasAdmin = () => {
 
             return (
               <div key={id}>
-                <br/>
+                <br />
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">
                   {tipo}
                 </h1>
-                <br/>
+                <br />
                 {bebidasFiltradas.map((beb) => {
                   const { id, nombre, descripcion, precio, tipo } = beb;
                   return (
@@ -63,65 +63,69 @@ const BebidasAdmin = () => {
                       key={id}
                       className="text-white font-tertiary text-xl my-2 flex flex-col"
                     >
-                      <div className="grid grid-flow-row grid-cols-4 gap-20">
-                        <h2
-                          className="uppercase text-2xl py-3 font-semibold"
-                          style={{ letterSpacing: "0.1em" }}
-                        >
-                          {nombre}
-                        </h2>
-                        <p
-                          className="text-2xl py-5 font-tertiary font-bold"
-                          style={{ letterSpacing: "0.1em" }}
-                        >
-                          ${precio}
-                        </p>
-                        <BiEdit
-                          className="cursor-pointer my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-blue-700"
-                          onClick={() => {
-                            setUpdate(true);
-                            setUpdateData({
-                              nombre,
-                              descripcion,
-                              precio,
-                              tipo,
-                              item,
-                              id,
-                            });
-                          }}
-                        />
-                        <BsTrash
-                          className="cursor-pointer my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-red-700"
-                          onClick={() => {
-                            Swal.fire({
-                              title: "¿Seguro que deseas eliminar?",
-                              text: "No podrás revertir esto",
-                              icon: "warning",
-                              showCancelButton: true,
-                              confirmButtonColor: "#3085d6",
-                              cancelButtonColor: "#d33",
-                              confirmButtonText: "Si, elimínalo!",
-                            }).then((result) => {
-                              if (result.isConfirmed) {
-                                axios.delete(`${URL_BASE}/delete/${id}`);
-                                Swal.fire(
-                                  "Eliminado!",
-                                  "Tu producto ha sido eliminado.",
-                                  "success"
-                                ).then(() => {
-                                  window.location.reload();
-                                });
-                              }
-                            });
-                          }}
-                        />
+                      <div className="grid grid-cols-2 gap-0">
+                        <div>
+                          <h2
+                            className="uppercase text-2xl py-3 font-semibold"
+                            style={{ letterSpacing: "0.1em" }}
+                          >
+                            {nombre}
+                          </h2>
+                          <p
+                            className="text-2xl py-5 font-tertiary font-bold"
+                            style={{ letterSpacing: "0.1em" }}
+                          >
+                            ${precio}
+                          </p>
+                        </div>
+                        <div>
+                          <BiEdit
+                            className="cursor-pointer m-auto py-2 my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-blue-700"
+                            onClick={() => {
+                              setUpdate(true);
+                              setUpdateData({
+                                nombre,
+                                descripcion,
+                                precio,
+                                tipo,
+                                item,
+                                id,
+                              });
+                            }}
+                          />
+                          <BsTrash
+                            className="cursor-pointer py-2 m-auto my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-red-700"
+                            onClick={() => {
+                              Swal.fire({
+                                title: "¿Seguro que deseas eliminar?",
+                                text: "No podrás revertir esto",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Si, elimínalo!",
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  axios.delete(`${URL_BASE}/delete/${id}`);
+                                  Swal.fire(
+                                    "Eliminado!",
+                                    "Tu producto ha sido eliminado.",
+                                    "success"
+                                  ).then(() => {
+                                    window.location.reload();
+                                  });
+                                }
+                              });
+                            }}
+                          />
+                        </div>
                       </div>
                       <p className="flex flex-col text-neutral-400">
                         {" "}
                         {descripcion}{" "}
                       </p>
                       <br />
-                      <hr/>
+                      <hr />
                     </div>
                   );
                 })}
