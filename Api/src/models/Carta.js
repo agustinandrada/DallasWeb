@@ -16,6 +16,11 @@ module.exports = (sequelize) => {
       nombre: { type: DataTypes.STRING, allowNull: false },
       descripcion: { type: DataTypes.STRING, allowNull: false },
       precio: { type: DataTypes.FLOAT, allowNull: false },
+      isActive: {
+        type: DataTypes.ENUM("Activo", "Inactivo"),
+        allowNull: false,
+        defaultValue: "Activo",
+      },
     },
     {
       timestamps: false,
