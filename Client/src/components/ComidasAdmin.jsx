@@ -30,12 +30,25 @@ const ComidasAdmin = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [comidas]);
 
   // Filtrar los "items" que tengan bebidas asociadas
   const itemsConComidas = items.filter((item) =>
     comidas.some((comida) => comida.itemId === item.id)
   );
+
+  const ordenarBebidasPorNombre = (a, b) => {
+    const nombreA = a.nombre.toLowerCase();
+    const nombreB = b.nombre.toLowerCase();
+
+    if (nombreA < nombreB) {
+      return -1;
+    }
+    if (nombreA > nombreB) {
+      return 1;
+    }
+    return 0;
+  };
 
   return (
     <section>
@@ -52,6 +65,7 @@ const ComidasAdmin = () => {
             const comidasFiltradas = comidas.filter(
               (comida) => comida.itemId === id
             );
+            comidasFiltradas.sort(ordenarBebidasPorNombre);
 
             return (
               <div key={id}>

@@ -31,11 +31,24 @@ const BebidasAdmin = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [bebidas]);
 
   const itemsConBebidas = items.filter((item) =>
     bebidas.some((beb) => beb.itemId === item.id)
   );
+
+  const ordenarBebidasPorNombre = (a, b) => {
+    const nombreA = a.nombre.toLowerCase();
+    const nombreB = b.nombre.toLowerCase();
+
+    if (nombreA < nombreB) {
+      return -1;
+    }
+    if (nombreA > nombreB) {
+      return 1;
+    }
+    return 0;
+  };
 
   return (
     <section>
@@ -49,7 +62,7 @@ const BebidasAdmin = () => {
           {itemsConBebidas.map((item) => {
             const { id, tipo } = item;
             const bebidasFiltradas = bebidas.filter((beb) => beb.itemId === id);
-
+            bebidasFiltradas.sort(ordenarBebidasPorNombre);
             return (
               <div key={id}>
                 <br />
