@@ -9,6 +9,7 @@ function CreateProduct({ setCreate }) {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -33,7 +34,11 @@ function CreateProduct({ setCreate }) {
         onSubmit={handleSubmit(onSubmit)}
         className="mb-0 space-y-6 p-10 flex flex-col text-black w-2/4 m-auto"
       >
-        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="nombre">
+        <label
+          className="text-white text-xl font-primary uppercase font-bold"
+          style={{ letterSpacing: "1px" }}
+          htmlFor="nombre"
+        >
           Nombre{" "}
         </label>
         <input
@@ -48,7 +53,11 @@ function CreateProduct({ setCreate }) {
             Campo requerido
           </span>
         )}
-        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="descripcion">
+        <label
+          className="text-white text-xl font-primary uppercase font-bold"
+          style={{ letterSpacing: "1px" }}
+          htmlFor="descripcion"
+        >
           Descripcion{" "}
         </label>
         <textarea
@@ -63,7 +72,11 @@ function CreateProduct({ setCreate }) {
             Campo requerido
           </span>
         )}
-        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="precio">
+        <label
+          className="text-white text-xl font-primary uppercase font-bold"
+          style={{ letterSpacing: "1px" }}
+          htmlFor="precio"
+        >
           Precio{" "}
         </label>
         <input
@@ -103,26 +116,43 @@ function CreateProduct({ setCreate }) {
         )}
 
         {/* ITEM */}
-        <select
-          className="p-1 rounded-sm h-9  origin-top"
-          {...register("item", {
-            validate: (value) => {
-              return value !== "item";
-            },
-          })}
-        >
-          <option value="item" selected disabled className="p-1">
-            Item
-          </option>
-          <option value="Hamburguesas">Hamburguesas</option>
-          <option value="Pizzas">Pizzas</option>
-          <option value="Papas">Papas</option>
-          <option value="Picadas">Picadas</option>
-          <option value="Cervezas">Cervezas</option>
-          <option value="Tragos">Tragos</option>
-          <option value="Aperitivos">Aperitivos</option>
-          <option value="Vinos">Vinos</option>
-        </select>
+        {watch("tipo") === "Comida" ? (
+          <select
+            className="p-1 rounded-sm h-9 origin-top"
+            {...register("item", {
+              validate: (value) => {
+                return value !== "item";
+              },
+            })}
+          >
+            <option value="item" selected disabled>
+              Item
+            </option>
+            <option value="Hamburguesas">Hamburguesas</option>
+            <option value="Pizzas">Pizzas</option>
+            <option value="Papas">Papas</option>
+            <option value="Picadas">Picadas</option>
+          </select>
+        ) : (
+          watch("tipo") === "Bebida" && (
+            <select
+              className="p-1 rounded-sm h-9 origin-top"
+              {...register("item", {
+                validate: (value) => {
+                  return value !== "item";
+                },
+              })}
+            >
+              <option value="item" selected disabled>
+                Item
+              </option>
+              <option value="Cervezas">Cervezas</option>
+              <option value="Tragos">Tragos</option>
+              <option value="Aperitivos">Aperitivos</option>
+              <option value="Vinos">Vinos</option>
+            </select>
+          )
+        )}
         {errors?.item && (
           <span className="text-red-500 text-m font-medium">
             Campo requerido
