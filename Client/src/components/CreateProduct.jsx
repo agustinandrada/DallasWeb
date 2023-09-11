@@ -14,9 +14,9 @@ function CreateProduct({ setCreate }) {
   const onSubmit = (data) => {
     Swal.fire({
       title: "Cargando...",
-      imageUrl: "https://usagif.com/wp-content/uploads/loading-4.gif",
+      imageUrl: "https://media.giphy.com/media/3o7bu8sRnYpTOG1p8k/giphy.gif",
       imageWidth: 400,
-      imageHeight: 200,
+      imageHeight: 400,
       imageAlt: "Custom image",
       showConfirmButton: false,
     });
@@ -33,7 +33,7 @@ function CreateProduct({ setCreate }) {
         onSubmit={handleSubmit(onSubmit)}
         className="mb-0 space-y-6 p-10 flex flex-col text-black w-2/4 m-auto"
       >
-        <label className="text-white" htmlFor="nombre">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="nombre">
           Nombre{" "}
         </label>
         <input
@@ -44,11 +44,11 @@ function CreateProduct({ setCreate }) {
           })}
         />
         {errors?.nombre && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <label className="text-white" htmlFor="descripcion">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="descripcion">
           Descripcion{" "}
         </label>
         <textarea
@@ -59,11 +59,11 @@ function CreateProduct({ setCreate }) {
           })}
         />
         {errors?.descripcion && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <label className="text-white" htmlFor="precio">
+        <label className="text-white text-xl font-primary uppercase font-bold" style={{letterSpacing:"1px"}} htmlFor="precio">
           Precio{" "}
         </label>
         <input
@@ -74,7 +74,7 @@ function CreateProduct({ setCreate }) {
           })}
         />
         {errors?.precio && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
@@ -97,7 +97,7 @@ function CreateProduct({ setCreate }) {
         </select>
 
         {errors?.tipo && (
-          <span className="text-red-500 text-sm font-medium ">
+          <span className="text-red-500 text-m font-medium ">
             Campo requerido
           </span>
         )}
@@ -124,18 +124,18 @@ function CreateProduct({ setCreate }) {
           <option value="Vinos">Vinos</option>
         </select>
         {errors?.item && (
-          <span className="text-red-500 text-sm font-medium">
+          <span className="text-red-500 text-m font-medium">
             Campo requerido
           </span>
         )}
-        <button className="text-white border-2 border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
+        <button className="text-white border-2 font-primary text-2xl border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105">
           Crear
         </button>
       </form>
 
       <button
         onClick={() => setCreate(false)}
-        className="border border-slate-800 bg-yellow-500  m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-600 "
+        className="bg-yellow-500 text-black m-5 p-2 w-36 text-xl rounded-lg transition-transform transform hover:scale-105 hover:bg-yellow-400 "
       >
         Volver
       </button>

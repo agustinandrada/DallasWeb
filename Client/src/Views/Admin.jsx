@@ -1,36 +1,105 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import CreateProduct from "../components/CreateProduct";
 import UpdateProduct from "../components/UpdateProduct";
 import Productos from "../components/Productos";
-import axios from "axios";
-
-const URL_BASE = "http://localhost:3001";
 
 export const UpdateContext = createContext(false);
 export const ProductContext = createContext();
 
 function Admin() {
+  const [access, setAccess] = useState(false);
   const [create, setCreate] = useState(false);
   const [update, setUpdate] = useState(false);
   const [updateData, setUpdateData] = useState({});
+  const [usuario, setUsuario] = useState("");
+  const [clave, setClave] = useState("");
+  const [error, setError] = useState("");
+
+  const accesHandler = () => {
+    event.preventDefault();
+    if (usuario === "prueba" && clave === "1234") {
+      setAccess(true);
+    } else {
+      setError("Credenciales Incorrectas");
+    }
+  };
+
+  if (access === false) {
+    return (
+      <div className="container m-auto justify-center items-center text-center pt-20">
+        <div className="flex justify-center items-center">
+          <form className="space-y-4 flex flex-col text-black w-2/4 justify-center items-center">
+            <h5
+              className=" flex justify-center font-primary text-3xl text-yellow-400 font-bold uppercase"
+              style={{ letterSpacing: "2px" }}
+            >
+              Bienvenido!
+            </h5>
+            <br />
+            <label
+              className="text-white text-xl font-primary uppercase font-bold"
+              htmlFor="Usuario"
+            >
+              Usuario
+            </label>
+            <input
+              type="text"
+              name="usuario"
+              id="usuario"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              className="pl-2 font-bold "
+            />
+            <br />
+            <br />
+            <label
+              className="text-white text-xl font-primary uppercase font-bold"
+              htmlFor="Clave"
+            >
+              Clave
+            </label>
+            <input
+              type="password"
+              name="clave"
+              id="clave"
+              value={clave}
+              onChange={(e) => setClave(e.target.value)}
+              className="pl-2 font-bold "
+            />
+            <h5 className="text-red-400 font-bold">{error}</h5>
+            <br />
+            <br />
+            <br />
+            <button
+              className="text-white border-2 font-primary text-2xl border-white w-52 m-auto bg-black rounded-md hover:bg-slate-800 transition-transform transform hover:scale-105"
+              onClick={() => accesHandler()}
+            >
+              Iniciar Sesión
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <ProductContext.Provider value={{ updateData }}>
       <UpdateContext.Provider value={{ setUpdate, setUpdateData }}>
-        <main className="m-5 box-border p-5">
+        <main className="box-border p-3">
           {!create && !update ? (
-            <div>
-              <div className="flex justify-center">
+            <div className="">
+              <div className="pl-4">
                 <button
                   onClick={() => {
                     setCreate(true);
                   }}
-                  className="w-52 bg-white hover:bg-gray-200 text-black p-1 border rounded-md transition-transform transform hover:scale-105"
+                  className=" bg-yellow-600 w-60 h-16 hover:bg-yellow-400 hover:text-black text-white font-secondary uppercase text-2xl font-bold rounded-md transition-transform transform hover:scale-105"
+                  style={{ letterSpacing: "1px" }}
                 >
                   Agregar Producto
                 </button>
               </div>
-              <Productos />
+              <Productos className="flex" />
             </div>
           ) : (
             <div>
