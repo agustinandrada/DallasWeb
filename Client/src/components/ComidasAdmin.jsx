@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { BiEdit } from "react-icons/bi";
-import { BsTrash } from "react-icons/bs";
+import { BsTrash, BsArrowClockwise } from "react-icons/bs";
+import { GiCancel } from "react-icons/gi";
 import { UpdateContext } from "../Views/Admin";
 import Swal from "sweetalert2";
 
@@ -29,12 +30,25 @@ const ComidasAdmin = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [comidas]);
 
   // Filtrar los "items" que tengan bebidas asociadas
   const itemsConComidas = items.filter((item) =>
     comidas.some((comida) => comida.itemId === item.id)
   );
+
+  const ordenarBebidasPorNombre = (a, b) => {
+    const nombreA = a.nombre.toLowerCase();
+    const nombreB = b.nombre.toLowerCase();
+
+    if (nombreA < nombreB) {
+      return -1;
+    }
+    if (nombreA > nombreB) {
+      return 1;
+    }
+    return 0;
+  };
 
   return (
     <section>
@@ -51,6 +65,7 @@ const ComidasAdmin = () => {
             const comidasFiltradas = comidas.filter(
               (comida) => comida.itemId === id
             );
+            comidasFiltradas.sort(ordenarBebidasPorNombre);
 
             return (
               <div key={id}>
@@ -60,11 +75,14 @@ const ComidasAdmin = () => {
                 </h1>
                 <br />
                 {comidasFiltradas.map((comida) => {
-                  const { id, nombre, descripcion, precio, tipo } = comida;
+                  const { id, nombre, descripcion, precio, tipo, isActive } =
+                    comida;
                   return (
                     <div
                       key={id}
-                      className="text-white font-tertiary text-xl my-2 flex flex-col"
+                      className={`text-white font-tertiary text-xl my-2 flex flex-col ${
+                        isActive === "Activo" ? "" : "bg-yellow-700 opacity-30"
+                      }`}
                     >
                       <div className="grid grid-cols-2 gap-0">
                         <div>
@@ -96,6 +114,65 @@ const ComidasAdmin = () => {
                               });
                             }}
                           />
+                          {isActive === "Activo" ? (
+                            <GiCancel
+                              className="cursor-pointer py-2 m-auto my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-yellow-500"
+                              onClick={() => {
+                                Swal.fire({
+                                  title: "¿Deseas desactivar este producto?",
+                                  text: "Realiza esta acción si no hay más stock",
+                                  icon: "warning",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#3085d6",
+                                  cancelButtonColor: "#d33",
+                                  confirmButtonText: "Si, desactivar",
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                    axios
+                                      .patch(`${URL_BASE}/update/${id}`, {
+                                        isActive: "Inactivo",
+                                      })
+                                      .then(() =>
+                                        Swal.fire(
+                                          "Desactivado",
+                                          "Tu producto ha sido desactivado.",
+                                          "success"
+                                        )
+                                      );
+                                  }
+                                });
+                              }}
+                            />
+                          ) : (
+                            <BsArrowClockwise
+                              className="cursor-pointer py-2 m-auto my-auto w-11 h-fit transition-transform transform hover:scale-150  hover:text-yellow-500  "
+                              onClick={() => {
+                                Swal.fire({
+                                  title: "¿Deseas activar este producto?",
+                                  text: "Realiza esta acción si renovaste el stock",
+                                  icon: "warning",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#3085d6",
+                                  cancelButtonColor: "#d33",
+                                  confirmButtonText: "Si, activar",
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                    axios
+                                      .patch(`${URL_BASE}/update/${id}`, {
+                                        isActive: "Activo",
+                                      })
+                                      .then(() =>
+                                        Swal.fire(
+                                          "Activado",
+                                          "Tu producto ha sido activado.",
+                                          "success"
+                                        )
+                                      );
+                                  }
+                                });
+                              }}
+                            />
+                          )}
                           <BsTrash
                             className="cursor-pointer py-2 m-auto my-auto w-11 h-fit transition-transform transform hover:scale-150 hover:text-red-700"
                             onClick={() => {

@@ -50,12 +50,13 @@ const actualizar = async (id, datos) => {
   const item = await Carta.findByPk(id);
 
   if (item) {
-    const { nombre, tipo, descripcion, precio } = datos;
+    const { nombre, tipo, descripcion, precio, isActive } = datos;
 
     item.nombre = nombre || item.nombre;
     item.tipo = tipo || item.tipo;
     item.descripcion = descripcion || item.descripcion;
     item.precio = precio || item.precio;
+    item.isActive = isActive || item.isActive;
 
     await item.save();
     return item;
