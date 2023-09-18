@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import CreateProduct from "../components/CreateProduct";
 import UpdateProduct from "../components/UpdateProduct";
 import Productos from "../components/Productos";
@@ -15,9 +15,16 @@ function Admin() {
   const [clave, setClave] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setAccess(true);
+    }
+  }, []);
+
   const accesHandler = () => {
     event.preventDefault();
     if (usuario === "prueba" && clave === "1234") {
+      localStorage.setItem("user", "authenticated");
       setAccess(true);
     } else {
       setError("Credenciales Incorrectas");
