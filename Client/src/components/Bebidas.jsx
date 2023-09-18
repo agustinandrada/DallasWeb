@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import load from "../assets/load.gif"
+import logo from "../assets/logo.png"
 
 const Bebidas = () => {
   const [bebidas, setBebidas] = useState([]);
@@ -31,10 +31,10 @@ const Bebidas = () => {
 if (loading) {
   return (
     <div className="flex justify-center items-center text-center">
-      <div className="w-40 h-28 flex items-center">
-        <img src={load} alt="Cargando..." className="mx-auto" />
-      </div>
-    </div>
+  <div className="w-90 h-58 m-auto flex items-center invert-colors">
+    <img src={logo} alt="Cargando..." className="mx-auto rotate" />
+  </div>
+</div>
   );
 }
 
