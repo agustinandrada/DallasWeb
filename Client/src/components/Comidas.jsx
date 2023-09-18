@@ -33,30 +33,28 @@ const Comidas = () => {
   );
 
   return (
-    <section>
-      <div>
-        <div className="mt-5 py-10 uppercase text-7xl text-white font-primary font-bold">
-        <h1>
-          Menu
-        </h1>
-        <h1 className="mt-4">
-          Comidas
-        </h1>
-        </div>
-        <br />
-        <br />
-        <div className="">
-          {itemsConComidas.map((item) => {
-            const { id, tipo } = item;
-            const comidasFiltradas = comidas.filter((com) => com.itemId === id);
+  <section>
+    <div>
+      <div className="mt-5 py-10 uppercase text-7xl text-white font-primary font-bold">
+        <h1>Menu</h1>
+        <h1 className="mt-4">Bebidas</h1>
+      </div>
+      <br />
+      <div className="">
+        {itemsConComidas.map((item) => {
+          const { id, tipo } = item;
+          const comidasFiltradas = comidas.filter((com) => com.itemId === id);
 
+          const comidasActivas = comidasFiltradas.filter((com) => com.isActive === "Activo");
+
+          if (comidasActivas.length > 0) {
             return (
               <div id={tipo} key={id}>
                 <h1 className="uppercase text-5xl text-yellow-400 font-secondary font-semibold">{tipo}</h1>
-                {comidasFiltradas.map((com) => {
+                {comidasActivas.map((com) => {
                   const { id, nombre, descripcion, precio } = com;
                   return (
-                    <div  key={id} className="text-white font-tertiary text-xl my-2 flex flex-col">
+                    <div key={id} className="text-white font-tertiary text-xl my-2 flex flex-col">
                       <div className="flex items-center justify-between">
                         <h2 className="uppercase py-3 font-semibold" style={{ letterSpacing: '0.1em' }}>{nombre}</h2>
                         <p className="text-2xl font-tertiary font-bold" style={{ letterSpacing: '0.1em' }}>${precio}</p>
@@ -68,11 +66,16 @@ const Comidas = () => {
                 })}
               </div>
             );
-          })}
-        </div>
+          } else {
+            // No hay comidas activas para este tipo, no renderizar el título
+            return null;
+          }
+        })}
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
+
 };
 
 export default Comidas;
