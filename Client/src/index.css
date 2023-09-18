@@ -37,6 +37,16 @@
   z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
+@keyframes spin {
+  0% { transform: rotate(240deg); }
+  100% { transform: rotate(460deg); }
+}
+
+/* Aplica la animación a la imagen */
+img.rotate {
+  animation: spin 3s linear infinite; /* Puedes ajustar la duración y el tipo de animación según tus preferencias */
+}
+
 
 body{
 
@@ -45,7 +55,6 @@ body{
     background-repeat: no-repeat
 
 }
-
 
 
 @layer base {
